@@ -6,6 +6,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import ProductMenu from "../../components/ProductMenu/ProductMenu";
 import BackgroundHomePage from "../../assets/images/background_img.png";
 import styledComponets from "styled-components";
+import ProductsCard from "../../components/ProductsCard/ProducrCards";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -44,7 +45,9 @@ export default function Home() {
 
         {Array.from(Array(6)).map((_, index) => (
           <Grid xs={12} sm={4} md={3} key={index}>
-            <Item>cards dos produtos</Item>
+            <Item>
+              <ProductsCard />
+            </Item>
           </Grid>
         ))}
       </Grid>

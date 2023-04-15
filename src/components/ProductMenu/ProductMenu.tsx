@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 
 import "./index.css";
@@ -11,26 +11,22 @@ theme.typography.h5 = {
 };
 
 const nomes = [
-  "liquid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liqusssid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liqfffuid",
-  "liquid",
-  "liquid",
-  "liqusssid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liquid",
-  "liquixxd",
+  {
+    id: "1",
+    nome: "liquid",
+  },
+  {
+    id: "2",
+    nome: "liquid",
+  },
+  {
+    id: "3",
+    nome: "liquid",
+  },
+  {
+    id: "4",
+    nome: "liquid",
+  },
 ];
 
 export default function ProductMenu() {
@@ -42,7 +38,8 @@ export default function ProductMenu() {
     <>
       {nomes.map((nome) => (
         <Chip
-          label={nome}
+          key={nome.id}
+          label={nome.nome}
           onClick={handleClick}
           sx={{ marginRight: "10px", marginBottom: "10px" }}
         />
