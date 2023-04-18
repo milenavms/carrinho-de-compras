@@ -11,13 +11,13 @@ import IconButton from "@mui/material/IconButton";
 
 export default function ProductsCard() {
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card>
       <CardMedia component="img" alt="img" height="140" image={img} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" textAlign="left">
           Lizard
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" textAlign="left">
           Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica
         </Typography>
