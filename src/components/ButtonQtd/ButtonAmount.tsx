@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 
 const Input = styledComponets.input.attrs({ type: "text" })`
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 5px;
   box-sizing: border-box;
   box-shadow: 0 0 0 0;
   border: 0 none;
@@ -34,7 +34,7 @@ export default function ButtonAmount() {
         <Input
           id="inputEmail"
           className="form-control"
-          value="3"
+          value="100"
           placeholder=""
           autoFocus
           disabled
