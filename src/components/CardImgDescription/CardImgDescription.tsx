@@ -28,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function CardImgDescription() {
   return (
     <Item>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ justifyContent: "center" }}>
         <Grid item>
           <ButtonBase>
             <Img src={img} alt="img product" />
