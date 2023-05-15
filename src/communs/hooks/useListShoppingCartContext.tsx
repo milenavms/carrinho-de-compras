@@ -6,7 +6,7 @@ export const useListShoppingCartContext = () => {
   const { shoppingCart, setShoppingCart } = useContext(ListShoppingCartContext);
 
   function addProducToShoppingCart(novoProduto: IDataListProduct) {
-    console.log("add produto no carrinho de compra");
+    setShoppingCart([...shoppingCart, novoProduto]);
   }
 
   return {

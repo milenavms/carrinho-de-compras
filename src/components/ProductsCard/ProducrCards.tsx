@@ -1,4 +1,3 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -10,8 +9,12 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import IconButton from "@mui/material/IconButton";
 import { IDataListProduct } from "../../service/getProducts";
 import { NavLink } from "react-router-dom";
+import { useListShoppingCartContext } from "../../communs/hooks/useListShoppingCartContext";
+import { useContext } from "react";
+import { ListShoppingCartContext } from "../../context/ListProductContext";
 
 export default function ProductsCard(props: IDataListProduct) {
+  const { addProducToShoppingCart } = useListShoppingCartContext();
   return (
     <Card>
       <CardMedia
@@ -54,7 +57,11 @@ export default function ProductsCard(props: IDataListProduct) {
           <NavLink to={`/details/${props.name} `}> Mais detalhes</NavLink>
         </Button>
 
-        <IconButton size="small" aria-label="add to shopping cart">
+        <IconButton
+          size="small"
+          aria-label="add to shopping cart"
+          onClick={() => addProducToShoppingCart(props)}
+        >
           <AddShoppingCartIcon sx={{ color: "#FF3A7D" }} />
         </IconButton>
       </CardActions>

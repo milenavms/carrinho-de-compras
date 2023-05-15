@@ -15,6 +15,7 @@ import ButtonAmount from "../ButtonQtd/ButtonAmount";
 import { styled } from "@mui/material/styles";
 import img from "../../assets/images/make.png";
 import styledComponets from "styled-components";
+import { useListShoppingCartContext } from "../../communs/hooks/useListShoppingCartContext";
 
 const Img = styledComponets.img`
   width: 100%;
@@ -44,13 +45,10 @@ function createData(
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-];
-
 export default function TableShoppingCart() {
+  const { shoppingCart, addProducToShoppingCart } =
+    useListShoppingCartContext();
+
   return (
     <TableContainer
       component={Paper}
@@ -76,15 +74,15 @@ export default function TableShoppingCart() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {shoppingCart.map((product) => (
             <TableRow
-              key={row.name}
+              key={product.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Avatar>
-                    <Img src={img} alt="img product" />
+                    <Img src={`${product.image_link}`} alt="img product" />
                   </Avatar>
                   <Typography
                     gutterBottom
@@ -92,18 +90,18 @@ export default function TableShoppingCart() {
                     component="div"
                     sx={{ paddingLeft: "15px", marginBottom: "0px" }}
                   >
-                    {row.name}
+                    {product.name}
                   </Typography>
                 </Box>
               </TableCell>
 
-              <TableCell align="left">R$ {row.fat}</TableCell>
+              <TableCell align="left">R$ {product.price}</TableCell>
               <TableCell align="left">
                 <Item>
                   <ButtonAmount />
                 </Item>
               </TableCell>
-              <TableCell align="right">R$ {row.carbs}</TableCell>
+              <TableCell align="right">R$ 0</TableCell>
               <TableCell align="right">
                 <IconButton aria-label="delete">
                   <DeleteIcon />
