@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { createContext } from "react";
 import { IDataListProduct } from "../service/getProducts";
 
@@ -6,19 +6,24 @@ interface props {
   children: JSX.Element | JSX.Element[];
 }
 
-const VALUE_INITIAL: IDataListProduct[] = [];
+type GlobalContent = {
+  shoppingCart: IDataListProduct[];
+  setShoppingCart: (c: IDataListProduct[]) => void;
+};
 
-export const ListProductContext = createContext<any>({
-  favorites: VALUE_INITIAL,
-  setFavorites: () => console.warn("setFavorites initial"),
+export const ListShoppingCartContext = createContext<GlobalContent>({
+  shoppingCart: [],
+  setShoppingCart: () => {},
 });
 
-export const FavoriteProvider = ({ children }: props) => {
-  const [favorites, setFavorites] = useState<any[]>(VALUE_INITIAL);
+ListShoppingCartContext.displayName = "List Shopping Cart";
+
+export const ShoppingCartProvider = ({ children }: props) => {
+  const [shoppingCart, setShoppingCart] = useState<IDataListProduct[]>([]);
 
   return (
-    <ListProductContext.Provider value={{ favorites, setFavorites }}>
+    <ListShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }}>
       {children}
-    </ListProductContext.Provider>
+    </ListShoppingCartContext.Provider>
   );
 };
