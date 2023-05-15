@@ -4,15 +4,9 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import styledComponets from "styled-components";
-import Divider from "@mui/material/Divider";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
-import ButtonAmount from "../../components/ButtonQtd/ButtonAmount";
-import ComplexGrid from "../../components/CardImgDescription/CardImgDescription";
-import CardImgDescription from "../../components/CardImgDescription/CardImgDescription";
 import TableShoppingCart from "../../components/TableShoppingCart/TableShoppingCart";
+import BreadcrumbsCustom from "../../components/BreadcrumbsCustom/BreadcrumbsCustom";
 
 const ButtonCustom = styledComponets.button`
 background: #F24E1E;
@@ -40,46 +34,14 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
-
 export default function ShoppingCart() {
-  const breadcrumbs = [
-    <Link
-      underline="hover"
-      key="1"
-      color="inherit"
-      href="/"
-      onClick={handleClick}
-    >
-      MUI
-    </Link>,
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      href="/material-ui/getting-started/installation/"
-      onClick={handleClick}
-    >
-      Core
-    </Link>,
-    <Typography key="3" color="text.primary">
-      Breadcrumb
-    </Typography>,
-  ];
   return (
     <Box sx={{ flexGrow: 1, paddingTop: 2 }}>
       <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
         <Grid xs={12}>
           <Item>
             <Box>
-              <Stack spacing={2}>
-                <Breadcrumbs separator="›" aria-label="breadcrumb">
-                  {breadcrumbs}
-                </Breadcrumbs>
-              </Stack>
+              <BreadcrumbsCustom name="Carrinho de Compras" />
             </Box>
           </Item>
         </Grid>

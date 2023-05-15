@@ -8,18 +8,38 @@ import Typography from "@mui/material/Typography";
 import img from "../../assets/images/make.png";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import IconButton from "@mui/material/IconButton";
+import { IDataListProduct } from "../../service/getProducts";
+import { NavLink } from "react-router-dom";
 
-export default function ProductsCard() {
+export default function ProductsCard(props: IDataListProduct) {
   return (
     <Card>
-      <CardMedia component="img" alt="img" height="140" image={img} />
+      <CardMedia
+        component="img"
+        alt="img"
+        height="145"
+        image={`${props.image_link}`}
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" textAlign="left">
-          Lizard
+          {props.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" textAlign="left">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          textAlign="left"
+          sx={{
+            maxWidth: "100%",
+            maxHeight: "64px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            lineHeight: "16px",
+            display: "-webkit-box",
+            WebkitLineClamp: "4",
+            WebkitBoxOrient: "vertical",
+          }}
+        >
+          {props.description}
         </Typography>
       </CardContent>
 
@@ -31,7 +51,7 @@ export default function ProductsCard() {
         }}
       >
         <Button size="small" sx={{ color: "#FF3A7D" }}>
-          Mais detalhes
+          <NavLink to={`/details/${props.name} `}> Mais detalhes</NavLink>
         </Button>
 
         <IconButton size="small" aria-label="add to shopping cart">

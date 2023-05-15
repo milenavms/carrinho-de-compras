@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -7,6 +7,7 @@ import ProductMenu from "../../components/ProductMenu/ProductMenu";
 import BackgroundHomePage from "../../assets/images/background_img.png";
 import styledComponets from "styled-components";
 import ProductsCard from "../../components/ProductsCard/ProducrCards";
+import { IDataListProduct, getProducts } from "../../service/getProducts";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -26,6 +27,14 @@ const ImgBackGround = styledComponets.img`
 `;
 
 export default function Home() {
+  const [listProdutos, setListProdutos] = React.useState<IDataListProduct[]>(
+    []
+  );
+
+  useEffect(() => {
+    getProducts().then((response) => setListProdutos(response));
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1, paddingTop: 2 }}>
       <Grid container spacing={2}>
@@ -42,14 +51,15 @@ export default function Home() {
             <ProductMenu />
           </Item>
         </Grid>
-
-        {Array.from(Array(6)).map((_, index) => (
-          <Grid xs={12} sm={4} md={3} key={index}>
-            <Item>
-              <ProductsCard />
-            </Item>
-          </Grid>
-        ))}
+        {listProdutos.map((produto) => {
+          return (
+            <Grid xs={12} sm={4} md={3} key={produto.id}>
+              <Item>
+                <ProductsCard {...produto} key={produto.id} />
+              </Item>
+            </Grid>
+          );
+        })}
       </Grid>
     </Box>
   );

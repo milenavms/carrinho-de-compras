@@ -12,6 +12,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const pages = ["Home"];
 
@@ -140,7 +142,9 @@ function ResponsiveAppBar() {
                 color="inherit"
               >
                 <Badge badgeContent={8} color="error">
-                  <ShoppingCartIcon />
+                  <NavLink to="shoppingcart/Nome do Cliente">
+                    <ShoppingCartIcon />
+                  </NavLink>
                 </Badge>
               </IconButton>
             </Tooltip>
